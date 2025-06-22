@@ -4,6 +4,8 @@
  * Robert Borghese
  ******************************************************/
 
+require('dotenv').config();
+
 const DBM = {};
 DBM.version = "2.1.7";
 
@@ -659,7 +661,7 @@ Bot.initEvents = function () {
 };
 
 Bot.login = function () {
-  this.bot.login(Files.data.settings.token);
+  this.bot.login(process.env.BOT_TOKEN);
 };
 
 Bot.onReady = function () {
@@ -1377,7 +1379,7 @@ Actions.checkConditions = function (guild, member, user, cmd) {
     case 3:
       return !isServer;
     case 4:
-      return Files.data.settings.ownerId && user.id === Files.data.settings.ownerId;
+      return (process.env.OWNER_ID) && user.id === (process.env.OWNER_ID);
     default:
       return true;
   }
